@@ -1,3 +1,3 @@
 # archdots
 ## Todo
- - Fix dwm config
+ [ - ] Fix dwm config
