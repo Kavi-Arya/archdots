@@ -3,12 +3,19 @@
 gitClones() {
 
 }
+
 config() {
 
 }
+
+paruInstall() {
+
+}
+
 dwm() {
 
 }
+
 pkgs() {
 
 }
