@@ -1,0 +1,8 @@
+cider-bin
+gruvbox-material-gtk-theme-git
+gruvbox-material-icon-theme-git
+paru
+shell-color-scripts
+ungoogled-chromium-bin
+vscodium-bin
+whitesur-cursor-theme-git
