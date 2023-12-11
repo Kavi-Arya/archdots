@@ -1,6 +1,7 @@
 #!/bin/sh
+
 echo "PlaceHolder"
-CONFIGDIR=$("$HOME/.config/")
+CONFIGDIR=$("$HOME/.config")
 ARCHDOTS=$("$HOME/.clones/archdots")
 LOCBIN=$("$HOME/.local/bin")
 AURHELPER="paru"
@@ -17,6 +18,7 @@ makingDirs() {
 
 paruInstall() {
 	echo "PlaceHolder"
+	sudo pacman -S --needed base-devel
 	git clone https://aur.archlinux.org/paru.git $HOME/.clones/paru
 	cd $HOME/.clones/paru
 	makepkg -si
@@ -25,8 +27,10 @@ paruInstall() {
 
 pkgs() {
 	echo "PlaceHolder"
-	cd $ARCHDOTS
-	sudo pacman -S --needed base-devel
+	cd $ARCHDOTS || {
+		echo "Failure"
+		exit 1
+	}
 	sudo pacman -S --needed - <./assets/pkgList.txt
 	$AURHELPER -S - <./assets/aurPkgs.txt
 	echo "PlaceHolder"
@@ -34,8 +38,11 @@ pkgs() {
 
 config() {
 	echo "PlaceHolder"
-	cd $ARCHDOTS
-	cp - rdwm dmenu st kitty zsh $CONFIGDIR
+	cd $ARCHDOTS || {
+		echo "Failure"
+		exit 1
+	}
+	cp -r dwm dmenu st kitty zsh lf newsboat nsxiv zathura $CONFIGDIR
 	cp -r .zprofile $HOME
 	sudo cp -r ./assets/xorgConfig/* /etc/X11/xorg.conf.d/
 	sudo cp -r ./fonts/* /usr/share/fonts/
@@ -45,7 +52,10 @@ config() {
 
 dwmBuild() {
 	echo "PlaceHolder"
-	cd $CONFIGDIR/dwm
+	cd $CONFIGDIR/dwm || {
+		echo "Failure"
+		exit 1
+	}
 	rm -rf ./config.h
 	make
 	sudo make install
@@ -54,7 +64,10 @@ dwmBuild() {
 
 stBuild() {
 	echo "PlaceHolder"
-	cd $CONFIGDIR/st
+	cd $CONFIGDIR/st || {
+		echo "Failure"
+		exit 1
+	}
 	make
 	sudo make install
 	echo "PlaceHolder"
@@ -62,8 +75,20 @@ stBuild() {
 
 dmenuBuild() {
 	echo "PlaceHolder"
-	cd $CONFIGDIR/dmenu
+	cd $CONFIGDIR/dmenu || {
+		echo "Failure"
+		exit 1
+	}
 	make
 	sudo make install
 	echo "PlaceHolder"
 }
+
+# Calling all the funcs
+makingDirs
+paruInstall
+pkgs
+config
+dwmBuild
+stBuild
+dmenuBuild
