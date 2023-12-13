@@ -20,7 +20,10 @@ paruInstall() {
 	echo "PlaceHolder"
 	sudo pacman -S --needed base-devel
 	git clone https://aur.archlinux.org/paru.git $HOME/.clones/paru
-	cd $HOME/.clones/paru
+	cd $HOME/.clones/paru || {
+		echo "Failure"
+		exit 1
+	}
 	makepkg -si
 	echo "PlaceHolder"
 }
@@ -44,6 +47,7 @@ config() {
 	}
 	cp -r dwm dmenu st kitty zsh lf newsboat nsxiv zathura $CONFIGDIR
 	cp -r .zprofile $HOME
+	cp -r ./bin/* $LOCBIN
 	sudo cp -r ./assets/xorgConfig/* /etc/X11/xorg.conf.d/
 	sudo cp -r ./fonts/* /usr/share/fonts/
 	sudo fc-cache -f -v && fc-cache -f -v
