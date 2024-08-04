@@ -1,0 +1,13 @@
+#!/bin/sh
+# colors
+
+black=#1d2021
+red=#ea6962
+green=#d4be98
+yellow=#ea6962
+orange=#d4be98
+blue=#ea6962
+indigo=#d4be98
+magenta=#ea6962
+cyan=#d4be98
+white=#d4be98
