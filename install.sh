@@ -1,11 +1,14 @@
 #!/bin/sh
+echo "
 
-echo "PlaceHolder"
-CONFIGDIR=$("$HOME/.config")
-ARCHDOTS=$("$HOME/.clones/archdots")
-LOCBIN=$("$HOME/.local/bin")
-AURHELPER="paru"
+.___                 __         .__  .__  .__              ._._.
+|   | ____   _______/  |______  |  | |  | |__| ____    ____| | |
+|   |/    \ /  ___/\   __\__  \ |  | |  | |  |/    \  / ___\ | |
+|   |   |  \\___ \  |  |  / __ \|  |_|  |_|  |   |  \/ /_/  >|\|
+|___|___|  /____  > |__| (____  /____/____/__|___|  /\___  /____
+         \/     \/            \/                  \//_____/ \/\/
 
+"
 makingDirs() {
 	echo "PlaceHolder"
 	mkdir $CONFIGDIR
@@ -15,6 +18,11 @@ makingDirs() {
 	mkdir -p $HOME/Documents/pdfs/
 	echo "PlaceHolder"
 }
+makingDirs
+CONFIGDIR=$("$HOME/.config")
+ARCHDOTS=$("$HOME/.clones/archdots")
+LOCBIN=$("$HOME/.local/bin")
+AURHELPER="paru"
 
 paruInstall() {
 	echo "PlaceHolder"
@@ -88,8 +96,6 @@ dmenuBuild() {
 	echo "PlaceHolder"
 }
 
-# Calling all the funcs
-makingDirs
 paruInstall
 pkgs
 config
