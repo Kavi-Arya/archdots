@@ -17,6 +17,7 @@ pc () {
   xinput disable "AT Translated Set 2 keyboard" &
   xinput disable "HD User Facing: HD User Facing" &
   xsetroot -cursor_name cross & 
+  http-server "$HOME/.config/myStartpage" &
   echo "PC"
 }
 laptop () {
