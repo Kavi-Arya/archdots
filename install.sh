@@ -26,7 +26,7 @@ makingDirs() {
 }
 
 paruInstall() {
-	echo "PlaceHolder"
+	echo "Installing Paru aur manager"
 	sudo pacman -S --needed base-devel
 	git clone https://aur.archlinux.org/paru.git "$HOME/.clones/paru"
 	cd "$HOME/.clones/paru" || {
@@ -34,22 +34,23 @@ paruInstall() {
 		exit 1
 	}
 	makepkg -si
-	echo "PlaceHolder"
+	echo "DONE!"
 }
 
 pkgs() {
-	echo "PlaceHolder"
+	echo "Installing Pkgs"
 	cd "$ARCHDOTS" || {
 		echo "Failure"
 		exit 1
 	}
-	sudo pacman -S --needed - <./assets/pkgList.txt
-	$AURHELPER -S - <./assets/aurPkgs.txt
-	echo "PlaceHolder"
+  sudo pacman -Syyu
+  cat ./assets/pkgList.txt | sudo pacma -S
+  cat ./assets/aurPkgs.txt | sudo "$AURHELPER" -S
+	echo "DONE!"
 }
 
 config() {
-	echo "PlaceHolder"
+	echo "Moving Shit"
 	cd "$ARCHDOTS" || {
 		echo "Failure"
 		exit 1
@@ -60,11 +61,11 @@ config() {
 	sudo cp -r ./assets/xorgConfig/* /etc/X11/xorg.conf.d/
 	sudo cp -r ./fonts/* /usr/share/fonts/
 	sudo fc-cache -f -v && fc-cache -f -v
-	echo "PlaceHolder"
+	echo "DONE!"
 }
 
 dwmBuild() {
-	echo "PlaceHolder"
+	echo "Building dwm"
 	cd "$CONFIGDIR/dwm" || {
 		echo "Failure"
 		exit 1
@@ -72,29 +73,29 @@ dwmBuild() {
 	rm -rf ./config.h
 	make
 	sudo make install
-	echo "PlaceHolder"
+	echo "DONE!"
 }
 
 stBuild() {
-	echo "PlaceHolder"
+	echo "Building st"
 	cd "$CONFIGDIR"/st || {
 		echo "Failure"
 		exit 1
 	}
 	make
 	sudo make install
-	echo "PlaceHolder"
+	echo "DONE!"
 }
 
 dmenuBuild() {
-	echo "PlaceHolder"
+	echo "Building dmenu"
 	cd "$CONFIGDIR"/dmenu || {
 		echo "Failure"
 		exit 1
 	}
 	make
 	sudo make install
-	echo "PlaceHolder"
+	echo "DONE!"
 }
 
 makingDirs
